@@ -6,8 +6,10 @@ import { DatabaseModule } from './database/database.module';
 import { UserModule } from './modules/user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { RoleModule } from './modules/role/role.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
+<<<<<<< HEAD
   imports: [
     ConfigModule,
     DatabaseModule,
@@ -15,6 +17,11 @@ import { RoleModule } from './modules/role/role.module';
     UserModule,
     RoleModule,
   ],
+=======
+  imports: [ConfigModule, DatabaseModule, TypeOrmModule.forRoot(), UserModule, RoleModule, AuthModule],
+  controllers: [AppController],
+  providers: [AppService],
+>>>>>>> develop
 })
 export class AppModule {
   static port: number | string;

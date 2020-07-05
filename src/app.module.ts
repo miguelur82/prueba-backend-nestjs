@@ -8,9 +8,10 @@ import { DatabaseModule } from './database/database.module';
 import { UserModule } from './modules/user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { RoleModule } from './modules/role/role.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
-  imports: [ConfigModule, DatabaseModule, TypeOrmModule.forRoot(), UserModule, RoleModule],
+  imports: [ConfigModule, DatabaseModule, TypeOrmModule.forRoot(), UserModule, RoleModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })

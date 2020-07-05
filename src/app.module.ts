@@ -9,19 +9,14 @@ import { RoleModule } from './modules/role/role.module';
 import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
-<<<<<<< HEAD
   imports: [
     ConfigModule,
     DatabaseModule,
     TypeOrmModule.forRoot(),
     UserModule,
     RoleModule,
+    AuthModule,
   ],
-=======
-  imports: [ConfigModule, DatabaseModule, TypeOrmModule.forRoot(), UserModule, RoleModule, AuthModule],
-  controllers: [AppController],
-  providers: [AppService],
->>>>>>> develop
 })
 export class AppModule {
   static port: number | string;

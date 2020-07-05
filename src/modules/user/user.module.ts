@@ -8,15 +8,10 @@ import { AuthModule } from '../auth/auth.module';
 import { RoleRepository } from '../role/role.repository';
 
 @Module({
-<<<<<<< HEAD
-  imports: [TypeOrmModule.forFeature([UserRepository])],
-=======
   imports: [
     TypeOrmModule.forFeature([UserRepository, RoleRepository]),
-    SharedModule,
     AuthModule,
   ],
->>>>>>> develop
   providers: [UserService],
   controllers: [UserController],
 })

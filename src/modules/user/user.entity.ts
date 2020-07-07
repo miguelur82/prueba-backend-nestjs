@@ -12,6 +12,7 @@ import {
 } from 'typeorm';
 import { UserDetails } from './user.details.entity';
 import { Role } from '../role/role.entity';
+import { Book } from '../book/book.entity';
 
 // Usar decorador
 @Entity('users')
@@ -28,15 +29,6 @@ export class User extends BaseEntity {
   @Column({ type: 'varchar', nullable: false })
   password: string;
 
-  @Column({ type: 'varchar', default: 'ACTIVE', length: 8 })
-  status: string;
-
-  @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
-  createdAt: Date;
-
-  @UpdateDateColumn({ type: 'timestamp', name: 'updated_at' })
-  updatedAt: Date;
-
   @OneToOne(type => UserDetails, {
     cascade: true,
     nullable: false,
@@ -52,4 +44,20 @@ export class User extends BaseEntity {
   )
   @JoinTable({ name: 'user_roles' })
   roles: Role[];
+
+  @ManyToMany(
+    type => Book,
+    book => book.authors,
+  )
+  @JoinTable({ name: 'user_books' })
+  books: Book[];
+
+  @Column({ type: 'varchar', default: 'ACTIVE', length: 8 })
+  status: string;
+
+  @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
+  createdAt: Date;
+
+  @UpdateDateColumn({ type: 'timestamp', name: 'updated_at' })
+  updatedAt: Date;
 }

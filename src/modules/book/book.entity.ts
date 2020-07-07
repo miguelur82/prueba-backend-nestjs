@@ -1,30 +1,33 @@
 import {
   BaseEntity,
-  Entity,
   PrimaryGeneratedColumn,
   Column,
-  OneToOne,
-  JoinTable,
   ManyToMany,
+  Entity,
   JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { User } from '../user/user.entity';
 
-// Usar decorador
-@Entity('users_prueba')
-export class User extends BaseEntity {
+@Entity('books')
+export class Book extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Column({ type: 'varchar', unique: true, length: 25, nullable: false })
-  username: string;
+  @Column({ type: 'varchar', length: 100, nullable: false })
+  name: string;
 
-  @Column({ type: 'varchar', nullable: false })
-  email: string;
+  @Column({ type: 'varchar', length: 500 })
+  description: string;
 
-  @Column({ type: 'varchar', nullable: false })
-  password: string;
+  @ManyToMany(
+    type => User,
+    user => user.books,
+    { eager: true },
+  )
+  @JoinColumn()
+  authors: User[];
 
   @Column({ type: 'varchar', default: 'ACTIVE', length: 8 })
   status: string;
